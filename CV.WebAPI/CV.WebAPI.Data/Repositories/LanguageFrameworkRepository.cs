@@ -1,8 +1,8 @@
 ﻿namespace CV.WebAPI.Data.Repositories
-{    
+{
     using System.Collections.Generic;
     using System.Linq;
-    
+
     using CV.WebAPI.Data.Contracts.Repositories;
 
     using CV.WebAPI.Models;
@@ -26,14 +26,9 @@
             return this.dbContext.LanguageFrameworks.Find(id);
         }
 
-        public IEnumerable<LanguageFramework> GetAllByLanguage(int languageId)
+        public IEnumerable<LanguageFramework> GetByLanguage(int id)
         {
-            return this.dbContext.LanguageFrameworks.Where(x => x.ProgrammingLanguageId == languageId).ToList();
-        }
-
-        public IEnumerable<LanguageFramework> GetAllByLanguage(ProgrammingLanguage language)
-        {
-            return this.dbContext.LanguageFrameworks.Where(x => x.ProgrammingLanguage == language).ToList();
+            return this.dbContext.ProgrammingLanguages.Find(id).Frameworks.ToList();
         }
     }
 }

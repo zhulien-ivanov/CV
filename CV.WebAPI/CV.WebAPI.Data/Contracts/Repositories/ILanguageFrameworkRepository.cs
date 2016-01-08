@@ -10,8 +10,6 @@
 
         LanguageFramework GetById(int id);
 
-        IEnumerable<LanguageFramework> GetAllByLanguage(int languageId);
-
-        IEnumerable<LanguageFramework> GetAllByLanguage(ProgrammingLanguage language);
+        IEnumerable<LanguageFramework> GetByLanguage(int id);
     }
 }
