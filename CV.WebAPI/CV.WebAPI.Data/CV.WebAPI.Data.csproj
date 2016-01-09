@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CV.Common\CV.Common.csproj">
+      <Project>{f2ef09a1-957b-4fd4-82ab-cb7c9ee63103}</Project>
+      <Name>CV.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CV.WebAPI.Models\CV.WebAPI.Models.csproj">
       <Project>{bcd5db05-93eb-4515-9b9e-6dd17b0f537a}</Project>
       <Name>CV.WebAPI.Models</Name>

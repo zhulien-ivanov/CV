@@ -2,12 +2,14 @@
 {
     using System.Collections.Generic;
 
+    using CV.Common.ViewModels;
+
     using CV.WebAPI.Models;
 
     public interface IProgrammingLanguageRepository
     {
-        IEnumerable<ProgrammingLanguage> GetAll();
+        IEnumerable<ProgrammingLanguageIconViewModel> GetAll();
 
-        ProgrammingLanguage GetById(int id);
+        ProgrammingLanguageDetailedViewModel GetById(int id);
     }
 }

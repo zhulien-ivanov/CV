@@ -128,6 +128,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CV.Common\CV.Common.csproj">
+      <Project>{f2ef09a1-957b-4fd4-82ab-cb7c9ee63103}</Project>
+      <Name>CV.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CV.WebAPI.Data\CV.WebAPI.Data.csproj">
       <Project>{b9b65b42-29ec-4f31-8eda-bb6fd9cc7aa8}</Project>
       <Name>CV.WebAPI.Data</Name>
@@ -141,7 +145,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FrameworksController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

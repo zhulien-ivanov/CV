@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using CV.Common.ViewModels;
+
     using CV.WebAPI.Data.Contracts.Repositories;
 
     using CV.WebAPI.Models;
@@ -16,19 +18,46 @@
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<LanguageFramework> GetAll()
+        public IEnumerable<LanguageFrameworkIconViewModel> GetAll()
         {
-            return this.dbContext.LanguageFrameworks.ToList();
+            return this.dbContext.LanguageFrameworks
+                    .Select(x => new LanguageFrameworkIconViewModel()
+                        {
+                            Id = x.Id,
+                            Name = x.Name,
+                            ImageLocation = x.ImageLocation
+                        })
+                    .ToList();
         }
 
-        public LanguageFramework GetById(int id)
+        public LanguageFrameworkDetailedViewModel GetById(int id)
         {
-            return this.dbContext.LanguageFrameworks.Find(id);
+            var item = this.dbContext.LanguageFrameworks.Find(id);
+
+            return new LanguageFrameworkDetailedViewModel()
+            {
+                Id = item.Id,
+                Name = item.Name,
+                ImageLocation = item.ImageLocation,
+                ProblemsSolvedScore = item.ProblemsSolvedScore,
+                TutorialsWatchedScore = item.TutorialsWatchedScore,
+                WorkOnBiggerProjectsScore = item.WorkOnBiggerProjectsScore
+            };
         }
 
-        public IEnumerable<LanguageFramework> GetByLanguage(int id)
+        public IEnumerable<LanguageFrameworkDetailedViewModel> GetByLanguage(int id)
         {
-            return this.dbContext.ProgrammingLanguages.Find(id).Frameworks.ToList();
+            return this.dbContext.ProgrammingLanguages.Find(id).Frameworks
+                .Select(x => new LanguageFrameworkDetailedViewModel()
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        ImageLocation = x.ImageLocation,
+                        ProblemsSolvedScore = x.ProblemsSolvedScore,
+                        TutorialsWatchedScore = x.TutorialsWatchedScore,
+                        WorkOnBiggerProjectsScore = x.WorkOnBiggerProjectsScore
+                    })
+                .ToList();
         }
     }
 }
