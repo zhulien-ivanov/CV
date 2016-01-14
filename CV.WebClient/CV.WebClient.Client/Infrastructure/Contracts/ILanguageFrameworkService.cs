@@ -8,9 +8,9 @@
     {
         IEnumerable<LanguageFrameworkDetailedViewModel> GetAll();
 
-        IEnumerable<LanguageFrameworkIconViewModel> GetAllByPartialViewModel();();
+        IEnumerable<LanguageFrameworkIconViewModel> GetAllByPartialViewModel();
 
-        LanguageFrameworkDetailedViewModel GetById(int id);        
+        LanguageFrameworkDetailedViewModel GetById(int id);
 
         IEnumerable<LanguageFrameworkDetailedViewModel> GetByLanguage(int id);
 
