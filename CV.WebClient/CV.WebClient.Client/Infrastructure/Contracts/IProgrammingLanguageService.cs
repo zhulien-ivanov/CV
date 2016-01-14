@@ -6,8 +6,10 @@
 
     public interface IProgrammingLanguageService
     {
-        IEnumerable<ProgrammingLanguageIconViewModel> GetAllLanguagesPartial();
+        IEnumerable<ProgrammingLanguageDetailedViewModel> GetAll();
 
-        ProgrammingLanguageDetailedViewModel GetLanguageDetails(int id);
+        IEnumerable<ProgrammingLanguageIconViewModel> GetAllByPartialViewModel();
+        
+        ProgrammingLanguageDetailedViewModel GetById(int id);
     }
 }

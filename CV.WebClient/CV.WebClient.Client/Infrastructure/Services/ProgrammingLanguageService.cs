@@ -21,9 +21,23 @@
             httpClient.BaseAddress = new Uri(BASE_ADDRESS);
         }
 
-        public IEnumerable<ProgrammingLanguageIconViewModel> GetAllLanguagesPartial()
+        public IEnumerable<ProgrammingLanguageDetailedViewModel> GetAll()
         {
             HttpResponseMessage response = this.httpClient.GetAsync("api/languages").Result;
+
+            IEnumerable<ProgrammingLanguageDetailedViewModel> languages = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                languages = JsonConvert.DeserializeObject<IEnumerable<ProgrammingLanguageDetailedViewModel>>(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return languages;
+        }
+
+        public IEnumerable<ProgrammingLanguageIconViewModel> GetAllByPartialViewModel()
+        {
+            HttpResponseMessage response = this.httpClient.GetAsync("api/languages/partial").Result;
 
             IEnumerable<ProgrammingLanguageIconViewModel> languages = null;
 
@@ -35,7 +49,7 @@
             return languages;
         }
 
-        public ProgrammingLanguageDetailedViewModel GetLanguageDetails(int id)
+        public ProgrammingLanguageDetailedViewModel GetById(int id)
         {
             ProgrammingLanguageDetailedViewModel language = null;
 

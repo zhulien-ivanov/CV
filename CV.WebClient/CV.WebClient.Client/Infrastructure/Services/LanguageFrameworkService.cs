@@ -21,9 +21,23 @@
             httpClient.BaseAddress = new Uri(BASE_ADDRESS);
         }
 
-        public IEnumerable<LanguageFrameworkIconViewModel> GetAllFrameworksPartial()
+        public IEnumerable<LanguageFrameworkDetailedViewModel> GetAll()
         {
             HttpResponseMessage response = this.httpClient.GetAsync("api/frameworks").Result;
+
+            IEnumerable<LanguageFrameworkDetailedViewModel> frameworks = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                frameworks = JsonConvert.DeserializeObject<IEnumerable<LanguageFrameworkDetailedViewModel>>(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return frameworks;
+        }
+
+        public IEnumerable<LanguageFrameworkIconViewModel> GetAllByPartialViewModel()
+        {
+            HttpResponseMessage response = this.httpClient.GetAsync("api/frameworks/partial").Result;
 
             IEnumerable<LanguageFrameworkIconViewModel> frameworks = null;
 
@@ -35,7 +49,7 @@
             return frameworks;
         }
 
-        public LanguageFrameworkDetailedViewModel GetFrameworkDetails(int id)
+        public LanguageFrameworkDetailedViewModel GetById(int id)
         {
             LanguageFrameworkDetailedViewModel framework = null;
 
@@ -49,7 +63,7 @@
             return framework;
         }
 
-        public IEnumerable<LanguageFrameworkDetailedViewModel> GetFrameworksByLanguage(int id)
+        public IEnumerable<LanguageFrameworkDetailedViewModel> GetByLanguage(int id)
         {
             HttpResponseMessage response = this.httpClient.GetAsync("api/frameworks/bylang/" + id).Result;
 
@@ -58,6 +72,20 @@
             if (response.IsSuccessStatusCode)
             {
                 frameworks = JsonConvert.DeserializeObject<IEnumerable<LanguageFrameworkDetailedViewModel>>(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return frameworks;
+        }
+
+        public IEnumerable<LanguageFrameworkIconViewModel> GetByLanguagePartialViewModel(int id)
+        {
+            HttpResponseMessage response = this.httpClient.GetAsync("api/frameworks/bylang/" + id + "/partial").Result;
+
+            IEnumerable<LanguageFrameworkIconViewModel> frameworks = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                frameworks = JsonConvert.DeserializeObject<IEnumerable<LanguageFrameworkIconViewModel>>(response.Content.ReadAsStringAsync().Result);
             }
 
             return frameworks;

@@ -6,10 +6,14 @@
 
     public interface ILanguageFrameworkService
     {
-        IEnumerable<LanguageFrameworkIconViewModel> GetAllFrameworksPartial();
+        IEnumerable<LanguageFrameworkDetailedViewModel> GetAll();
 
-        LanguageFrameworkDetailedViewModel GetFrameworkDetails(int id);
+        IEnumerable<LanguageFrameworkIconViewModel> GetAllByPartialViewModel();();
 
-        IEnumerable<LanguageFrameworkDetailedViewModel> GetFrameworksByLanguage(int id);
+        LanguageFrameworkDetailedViewModel GetById(int id);        
+
+        IEnumerable<LanguageFrameworkDetailedViewModel> GetByLanguage(int id);
+
+        IEnumerable<LanguageFrameworkIconViewModel> GetByLanguagePartialViewModel(int id);
     }
 }
