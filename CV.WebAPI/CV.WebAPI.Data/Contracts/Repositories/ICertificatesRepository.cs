@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using CV.Common.ViewModels;
+    using CV.Common.ViewModels.Certificate;
 
     using CV.WebAPI.Models;
 
